@@ -251,7 +251,7 @@ class HaystackResultsAdmin(object):
             # TODO: make this betterererer.
             find_all_models = ['&models=%s' % x[0] for x in available_models]
             find_all_models = ''.join(find_all_models)
-            qs = self.get_current_query_string(request, remove=['p'])
+            qs = self.get_current_query_string(request)#, remove=['p'])
             return HttpResponseRedirect(request.path_info + qs + find_all_models)
 
         try:
@@ -281,7 +281,7 @@ class HaystackResultsAdmin(object):
             'app_label': self.model._meta.app_label,
             'filtered': True,
             'form': form,
-            'query_string': self.get_current_query_string(request, remove=['p']),
+            'query_string': self.get_current_query_string(request),#, remove=['p']),
             'search_var': self.get_search_var(request),
             'page_var': page_var,
             'module_name': force_unicode(self.model._meta.verbose_name_plural),
